@@ -10,10 +10,16 @@ import { DataContext } from "./ContextStore";
 const WeatherInfo = styled.div`
   display: flex;
   flex-direction: column;
+  // @media (min-width: 2000px) {
+  //   width: 80%;
+  // }
 `;
 
 const Row = styled.div`
   display: flex;
+  @media (min-width: 2000px) {
+    width: 800px;
+  }
 `;
 
 function WeatherInfoSection() {

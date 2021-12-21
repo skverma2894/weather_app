@@ -6,21 +6,21 @@ const CardFrame = styled.div`
   display: flex;
   padding: 10px;
   min-padding: 0%;
-  margin: 10px;
+
   justify-content: center;
-  min-width: 10%;
-  width: 100px;
+  max-width: 1000px;
+  width: 50%;
   font-weight: 700;
 `;
 
 const Desc = styled.div`
-  margin-left: 5px;
+  margin-left: 15px;
 `;
 
 function Card(props) {
   return (
     <CardFrame>
-      <img src={props.img} alt="" />
+      <img src={props.img} alt="" width="80px" />
       <Desc>
         <div>{props.amt}</div>
         <div>{props.title}</div>
