@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import perfectDay from "../icons/perfect-day.svg";
+// import perfectDay from "../icons/perfect-day.svg";
 import { DataContext } from "./ContextStore";
 import WeatherInfoSection from "./WeatherInfoSection";
 
@@ -9,17 +9,57 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 55vw;
-  max-width: 450px;
-  height: 500px;
-  min-height: 75vh;
-  box-shadow: 0 2px 2px 2px grey;
-  border-radius: 5px;
+  font-size: 1.25em;
+  width: 95vw;
+  max-width: 5000px;
+  max-height: 750px;
+  height: 70vh;
+  // box-shadow: 0 2px 2px 2px grey;
+  // border-radius: 5px;
+
+  @media (min-width: 700px) {
+    font-size: 32px;
+    width: 65vw;
+  }
+
+  @media (min-width: 1000px) {
+    font-size: 34px;
+    height: 70vh;
+    width: 60vw;
+  }
+
+  @media (min-width: 2000px) {
+    font-size: 50px;
+    height: 90vh;
+    width: 60vw;
+  }
 `;
 
 const Title = styled.h1`
-  font-weight: 700;
   margin-top: 40px;
+  font-weight: 900;
+
+  @media (min-width: 700px) {
+    font-size: 52px;
+  }
+
+  @media (min-width: 1000px) {
+    font-size: 56px;
+  }
+
+  @media (min-width: 2000px) {
+    font-size: 100px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+`;
+
+const TemperatureSectionOuter = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 2000px) {
+    flex-direction: row;
+  }
 `;
 
 const TemperatureSection = styled.div`
@@ -30,12 +70,24 @@ const TemperatureSection = styled.div`
 const Temperature = styled.div`
   font-weight: 700;
   font-size: 24px;
+  @media (min-width: 2000px) {
+    font-size: 48px;
+    font-weight: 900;
+  }
 `;
 
 const City = styled.h2`
   font-weight: bolder;
   display: flex;
   align-items: center;
+  @media (min-width: 2000px) {
+    margin: 20px 0;
+  }
+`;
+
+const Head3 = styled.h3`
+  margin-bottom: 30px;
+  margin-top: 10px;
 `;
 
 const TemperatureImg = styled.img`
@@ -44,27 +96,6 @@ const TemperatureImg = styled.img`
   min-height: 35%;
   height: 100px;
   // margin: 10px 10px;
-`;
-
-const Inp = styled.input`
-  border: 1px solid black;
-  padding: 10px;
-  min-width: 30%;
-  width: 180px;
-  min-height: 10%;
-  height: 15px;
-  selection: none;
-  font-size: 16px;
-  &:focus {
-    outline: none;
-  }
-`;
-
-const Btn = styled.button`
-  border: 1px solid black;
-  background: black;
-  color: white;
-  padding: 10px;
 `;
 
 function WeatherDisplay() {
@@ -76,18 +107,21 @@ function WeatherDisplay() {
   return (
     <Container>
       <Title>Weather App</Title>
-      <TemperatureSection>
-        <Temperature>
-          {Math.trunc(data.main.temp)}°C|{data.weather[0].main}
-        </Temperature>
+      <TemperatureSectionOuter>
+        <TemperatureSection>
+          <Temperature>
+            {Math.trunc(data.main.temp)}°C|{data.weather[0].main}
+          </Temperature>
 
-        <TemperatureImg src={iconurl} />
-      </TemperatureSection>
-      <City>
-        {data.name}|<span style={{ fontSize: "1rem" }}>{data.sys.country}</span>
-      </City>
+          <TemperatureImg src={iconurl} />
+        </TemperatureSection>
+        <City>
+          {data.name}|
+          <span style={{ fontSize: "50%" }}>{data.sys.country}</span>
+        </City>
+      </TemperatureSectionOuter>
 
-      <h3>Weather Info</h3>
+      <Head3>Weather Info</Head3>
       <WeatherInfoSection />
     </Container>
   );
